@@ -1,0 +1,22 @@
+
+<!--//Use this website to get the xml configuration-->
+<!--https://docs.spring.io/spring-framework/docs/4.2.x/spring-framework-reference/html/xsd-configuration.html-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+
+
+    <bean id="Dev" class="org.example.Dev" autowire="byType">
+<!--         <property name="comp" ref="comp" />-->
+    </bean>
+
+    <bean id="comp" class="org.example.Laptop" primary="true">
+    </bean>
+
+    <bean id="comp1" class="org.example.Desktop">
+    </bean>
+
+</beans>
