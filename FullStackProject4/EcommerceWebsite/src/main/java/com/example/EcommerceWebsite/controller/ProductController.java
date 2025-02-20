@@ -91,5 +91,10 @@ public class ProductController {
             return new ResponseEntity<>("failed to delete or Product not found",HttpStatus.BAD_REQUEST);
         }
     }
+    @GetMapping("/products/search")
+    public ResponseEntity<List<Product>> searchProduct(@RequestParam String keyword){
+        List<Product> products = service.searchProducts(keyword);
+        return new ResponseEntity<>(products, HttpStatus.OK);
+    }
 
 }
