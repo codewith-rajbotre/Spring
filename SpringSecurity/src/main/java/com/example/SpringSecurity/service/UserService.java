@@ -16,21 +16,21 @@ public class UserService {
     private JWTService jwtService;
     @Autowired
     private UserRepo repo;
-
+    //for encrypting the password we use the BCryptPasswordEncoder  and wew have to send strength
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
     @Autowired
     private AuthenticationManager authenticationManager;
 
     public Users register(Users user){
         user.setPassword(encoder.encode(user.getPassword()));
-     return  repo.save(user);
+        return repo.save(user);
     }
 
     public String verify(Users user) {
         Authentication authenticate =
                  authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
                   if(authenticate.isAuthenticated()) {
-                      return jwtService.generateToken();
+                      return jwtService.generateToken(user.getUsername());
                   }
                   return "Fail";
     }
